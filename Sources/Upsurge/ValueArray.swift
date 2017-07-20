@@ -25,6 +25,37 @@ open class ValueArray<Element: Value>: MutableLinearType, ExpressibleByArrayLite
     public typealias Index = Int
     public typealias IndexDistance = Int
     public typealias Slice = ValueArraySlice<Element>
+    
+    public static func calculatePageAlignedCapacity(
+        _ capacity: Int,
+        extraPage: Bool = true)
+        -> (pagedCapacity: Int, bytesCapacity: Int)
+    {
+        let pageSize = 4096//Int(getpagesize())
+        let elementSize = MemoryLayout<Element>.size
+        let dataSize = capacity * elementSize
+        let pageCount = (dataSize + (pageSize - 1)) / pageSize
+        let bytesCapacity = extraPage ? (pageCount + 1) * pageSize : pageCount * pageSize
+        let pagedCapacity = bytesCapacity / elementSize
+        return (pagedCapacity: pagedCapacity, bytesCapacity: bytesCapacity)
+    }
+    
+    public static func forcePageAlignedCapacity(_ capacity: Int) -> (pagedPointer: UnsafeMutablePointer<Element>, pagedCapacity: Int, bytesCapacity: Int) {
+        
+        let pageSize = 4096//Int(getpagesize())
+        let (pagedCapacity, bytesCapacity) = calculatePageAlignedCapacity(capacity)
+        
+        var mutablePointer: UnsafeMutableRawPointer? = nil
+        
+        let ret = posix_memalign(&mutablePointer, pageSize, bytesCapacity)
+        
+        if ret != noErr {
+            let err = String(validatingUTF8: strerror(ret)) ?? "unknown error"
+            fatalError("Unable to allocate aligned memory: \(err).")
+        }
+        
+        return (pagedPointer: mutablePointer!.assumingMemoryBound(to: Element.self), pagedCapacity: pagedCapacity, bytesCapacity: bytesCapacity)
+    }
 
     convenience required public init() {
       self.init(count: 0)
@@ -72,31 +103,39 @@ open class ValueArray<Element: Value>: MutableLinearType, ExpressibleByArrayLite
 
     /// Construct an uninitialized ValueArray with the given capacity
     public required init(capacity: IndexDistance) {
-        mutablePointer = UnsafeMutablePointer.allocate(capacity: capacity)
-        self.capacity = capacity
+        let (pagedPointer, pagedCapacity, bytesCapacity) = ValueArray.forcePageAlignedCapacity(capacity)
+        self.mutablePointer = pagedPointer
+        self.bytesCapacity = bytesCapacity
+        self.capacity = pagedCapacity
         self.count = 0
     }
 
     /// Construct an uninitialized ValueArray with the given size
     public required init(count: IndexDistance) {
-        mutablePointer = UnsafeMutablePointer.allocate(capacity: count)
-        self.capacity = count
+        let (pagedPointer, pagedCapacity, bytesCapacity) = ValueArray.forcePageAlignedCapacity(count)
+        self.mutablePointer = pagedPointer
+        self.bytesCapacity = bytesCapacity
+        self.capacity = pagedCapacity
         self.count = count
     }
 
     /// Construct a ValueArray from an array literal
     public required init(arrayLiteral elements: Element...) {
-        mutablePointer = UnsafeMutablePointer.allocate(capacity: elements.count)
-        self.capacity = elements.count
+        let (pagedPointer, pagedCapacity, bytesCapacity) = ValueArray.forcePageAlignedCapacity(elements.count)
+        self.mutablePointer = pagedPointer
+        self.bytesCapacity = bytesCapacity
+        self.capacity = pagedCapacity
         self.count = elements.count
         _ = UnsafeMutableBufferPointer(start: mutablePointer, count: count).initialize(from: elements)
     }
 
     /// Construct a ValueArray from contiguous memory
     public required init<C: LinearType>(_ values: C) where C.Element == Element {
-        mutablePointer = UnsafeMutablePointer.allocate(capacity: values.count)
-        capacity = values.count
-        count = values.count
+        let (pagedPointer, pagedCapacity, bytesCapacity) = ValueArray.forcePageAlignedCapacity(values.count)
+        self.mutablePointer = pagedPointer
+        self.bytesCapacity = bytesCapacity
+        self.capacity = pagedCapacity
+        self.count = values.count
         values.withUnsafeBufferPointer { pointer in
             for i in 0..<count {
                 mutablePointer[i] = pointer[values.startIndex + i * values.step]
@@ -133,6 +172,7 @@ open class ValueArray<Element: Value>: MutableLinearType, ExpressibleByArrayLite
     {
         self.mutablePointer = unownedMutablePointer
         self.capacity = count
+        self.bytesCapacity = ValueArray.calculatePageAlignedCapacity(count, extraPage: false).bytesCapacity
         self.count = count
         self.unownedPointer = true
     }
@@ -144,6 +184,7 @@ open class ValueArray<Element: Value>: MutableLinearType, ExpressibleByArrayLite
     {
         self.mutablePointer = unownedMutablePointer
         self.capacity = count
+        self.bytesCapacity = ValueArray.calculatePageAlignedCapacity(count, extraPage: false).bytesCapacity
         self.count = count
         self.unownedPointer = true
         
@@ -154,8 +195,10 @@ open class ValueArray<Element: Value>: MutableLinearType, ExpressibleByArrayLite
 
     /// Construct a ValueArray of `count` elements, each initialized with `initializer`.
     public required init(count: IndexDistance, initializer: () -> Element) {
-        mutablePointer = UnsafeMutablePointer.allocate(capacity: count)
-        capacity = count
+        let (pagedPointer, pagedCapacity, bytesCapacity) = ValueArray.forcePageAlignedCapacity(count)
+        self.mutablePointer = pagedPointer
+        self.bytesCapacity = bytesCapacity
+        self.capacity = pagedCapacity
         self.count = count
         for i in 0..<count {
             self[i] = initializer()
