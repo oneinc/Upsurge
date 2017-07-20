@@ -30,7 +30,9 @@ open class ValueArray<Element: Value>: MutableLinearType, ExpressibleByArrayLite
       self.init(count: 0)
     }
 
-    internal(set) var mutablePointer: UnsafeMutablePointer<Element>
+    public internal(set) var mutablePointer: UnsafeMutablePointer<Element>
+    private var unownedPointer: Bool = false
+
     open internal(set) var capacity: IndexDistance
     open internal(set) var count: IndexDistance
 
@@ -108,6 +110,38 @@ open class ValueArray<Element: Value>: MutableLinearType, ExpressibleByArrayLite
     public required convenience init(count: IndexDistance, repeatedValue: Element) {
         self.init(count: count) { repeatedValue }
     }
+    
+    /// Construct a ValueArray of `count` elements, each initialized to `repeatedValue`.
+    public required convenience init(repeating repeatedValue: Element, count: Int) {
+        self.init(count: count) { repeatedValue }
+    }
+    
+    
+    
+    public required init(
+        unownedMutablePointer: UnsafeMutablePointer<Element>,
+        count: Int)
+    {
+        self.mutablePointer = unownedMutablePointer
+        self.capacity = count
+        self.count = count
+        self.unownedPointer = true
+    }
+    
+    public required init(
+        repeating repeatedValue: Element,
+        unownedMutablePointer: UnsafeMutablePointer<Element>,
+        count: Int)
+    {
+        self.mutablePointer = unownedMutablePointer
+        self.capacity = count
+        self.count = count
+        self.unownedPointer = true
+        
+        for index in 0 ..< count {
+            mutablePointer[index] = repeatedValue
+        }
+    }
 
     /// Construct a ValueArray of `count` elements, each initialized with `initializer`.
     public required init(count: IndexDistance, initializer: () -> Element) {
@@ -120,7 +154,9 @@ open class ValueArray<Element: Value>: MutableLinearType, ExpressibleByArrayLite
     }
 
     deinit {
-        mutablePointer.deallocate(capacity: capacity)
+        if !unownedPointer {
+            mutablePointer.deallocate(capacity: capacity)
+        }
     }
 
     open subscript(index: Index) -> Element {
