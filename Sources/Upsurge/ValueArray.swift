@@ -119,6 +119,38 @@ open class ValueArray<Element: Value>: MutableLinearType, ExpressibleByArrayLite
     public required convenience init(count: IndexDistance, repeatedValue: Element) {
         self.init(count: count) { repeatedValue }
     }
+    
+    /// Construct a ValueArray of `count` elements, each initialized to `repeatedValue`.
+    public required convenience init(repeating repeatedValue: Element, count: Int) {
+        self.init(count: count) { repeatedValue }
+    }
+    
+    
+    
+    public required init(
+        unownedMutablePointer: UnsafeMutablePointer<Element>,
+        count: Int)
+    {
+        self.mutablePointer = unownedMutablePointer
+        self.capacity = count
+        self.count = count
+        self.unownedPointer = true
+    }
+    
+    public required init(
+        repeating repeatedValue: Element,
+        unownedMutablePointer: UnsafeMutablePointer<Element>,
+        count: Int)
+    {
+        self.mutablePointer = unownedMutablePointer
+        self.capacity = count
+        self.count = count
+        self.unownedPointer = true
+        
+        for index in 0 ..< count {
+            mutablePointer[index] = repeatedValue
+        }
+    }
 
     /// Construct a ValueArray of `count` elements, each initialized with `initializer`.
     public required init(count: IndexDistance, initializer: () -> Element) {
