@@ -32,7 +32,7 @@ extension XCTestCase {
 
         // swiftlint:disable:next unused_enumerated
         for (i, _) in source.enumerated() {
-            XCTAssertEqualWithAccuracy(actual[i], expected[i], accuracy: accuracy)
+            XCTAssertEqual(actual[i], expected[i], accuracy: accuracy)
         }
     }
 }

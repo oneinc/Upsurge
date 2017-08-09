@@ -40,7 +40,7 @@ class ArithmeticTests: XCTestCase {
             actual = sum(array)
         }
 
-        XCTAssertEqualWithAccuracy(actual, expected, accuracy: 0.0001)
+        XCTAssertEqual(actual, expected, accuracy: 0.0001)
     }
 
     func testSumRealArray() {
@@ -59,7 +59,7 @@ class ArithmeticTests: XCTestCase {
             actual = sum(array)
         }
 
-        XCTAssertEqualWithAccuracy(actual, expected, accuracy: 0.0001)
+        XCTAssertEqual(actual, expected, accuracy: 0.0001)
     }
 
     func testMeanSlice() {
@@ -81,7 +81,7 @@ class ArithmeticTests: XCTestCase {
             sqrt(values, results: &results)
         }
         for i in 0..<n {
-            XCTAssertEqualWithAccuracy(results[i], sqrt(values[i]), accuracy: 0.0001)
+            XCTAssertEqual(results[i], sqrt(values[i]), accuracy: 0.0001)
         }
     }
 

@@ -20,9 +20,9 @@
 
 /// Span is a collection of Ranges to specify a multi-dimensional slice of a Tensor.
 public struct Span: ExpressibleByArrayLiteral, Sequence {
-    public typealias Element = CountableClosedRange<Int>
+    public typealias ElementType = CountableClosedRange<Int>
 
-    private var ranges: [Element]
+    private var ranges: [ElementType]
 
     public var startIndex: [Int] {
         return ranges.map { $0.lowerBound }
@@ -44,17 +44,17 @@ public struct Span: ExpressibleByArrayLiteral, Sequence {
         return ranges.map { $0.count }
     }
 
-    public init(ranges: [Element]) {
+    public init(ranges: [ElementType]) {
         self.ranges = ranges
     }
 
-    public init(arrayLiteral elements: Element...) {
+    public init(arrayLiteral elements: ElementType...) {
         self.init(ranges: elements)
     }
 
     public init(base: Span, intervals: [IntervalType]) {
         assert(base.contains(intervals))
-        var ranges = [Element]()
+        var ranges = [ElementType]()
 
         for (i, interval) in intervals.enumerated() {
             let start = interval.start ?? base[i].lowerBound
@@ -66,7 +66,7 @@ public struct Span: ExpressibleByArrayLiteral, Sequence {
     }
 
     public init(dimensions: [Int], intervals: [IntervalType]) {
-        var ranges = [Element]()
+        var ranges = [ElementType]()
         for i in 0..<intervals.count {
             let start = intervals[i].start ?? 0
             let end = intervals[i].end ?? dimensions[i]
@@ -94,15 +94,15 @@ public struct Span: ExpressibleByArrayLiteral, Sequence {
         return SpanGenerator(span: self)
     }
 
-    public subscript(index: Int) -> Element {
+    public subscript(index: Int) -> ElementType {
         return ranges[index]
     }
 
-    public subscript(range: ClosedRange<Int>) -> ArraySlice<Element> {
+    public subscript(range: ClosedRange<Int>) -> ArraySlice<ElementType> {
         return ranges[range]
     }
 
-    public subscript(range: Range<Int>) -> ArraySlice<Element> {
+    public subscript(range: Range<Int>) -> ArraySlice<ElementType> {
         return ranges[range]
     }
 

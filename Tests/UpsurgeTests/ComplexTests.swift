@@ -61,8 +61,8 @@ class ComplexTests: XCTestCase {
             actual = sum(values)
         }
 
-        XCTAssertEqualWithAccuracy(actual.real, expected.real, accuracy: 0.0001)
-        XCTAssertEqualWithAccuracy(actual.imag, expected.imag, accuracy: 0.0001)
+        XCTAssertEqual(actual.real, expected.real, accuracy: 0.0001)
+        XCTAssertEqual(actual.imag, expected.imag, accuracy: 0.0001)
     }
 
 }
