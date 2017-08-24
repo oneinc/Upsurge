@@ -19,7 +19,12 @@
 // THE SOFTWARE.
 
 /// A real number
-public protocol Real: FloatingPoint, ExpressibleByFloatLiteral, CustomStringConvertible {}
+
+#if swift(>=3.2)
+    public protocol Real: FloatingPoint, ExpressibleByFloatLiteral, CustomStringConvertible {}
+#else
+    public protocol Real: FloatingPoint, ExpressibleByFloatLiteral, CustomStringConvertible, Hashable {}
+#endif
 
 extension Double: Real {}
 extension Float: Real {}
