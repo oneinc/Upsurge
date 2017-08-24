@@ -127,7 +127,7 @@ open class Matrix<Element: Value>: MutableQuadraticType, Equatable, CustomString
         }
 
     }
-
+    
     /// Construct a Matrix from an array of rows
     public init(rows: Int, columns: Int, initializer: () -> Element) {
         self.rows = rows
