@@ -25,3 +25,5 @@ public protocol Value: Comparable, CustomStringConvertible, Hashable {}
 extension Double: Value {}
 extension Float: Value {}
 extension Int: Value {}
+extension Int8: Value {}
+extension Int16: Value {}
