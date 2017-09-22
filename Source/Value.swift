@@ -27,3 +27,6 @@ extension Float: Value {}
 extension Int: Value {}
 extension Int8: Value {}
 extension Int16: Value {}
+extension UInt: Value {}
+extension UInt8: Value {}
+extension UInt16: Value {}
