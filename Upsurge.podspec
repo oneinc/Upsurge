@@ -1,6 +1,6 @@
 Pod::Spec.new do |s|
   s.name = 'Upsurge'
-  s.version = '0.9.0'
+  s.version = '0.10.0'
   s.license = 'MIT'
   s.summary = 'Swift + Accelerate'
   s.homepage = 'https://github.com/aleph7/Upsurge'
@@ -12,7 +12,7 @@ Pod::Spec.new do |s|
   s.osx.deployment_target = '10.10'
   s.tvos.deployment_target = '9.0'
 
-  s.source_files = 'Source/*.swift'
+  s.source_files = 'Sources/Upsurge/*.swift'
 
   s.frameworks = 'Accelerate'
 end
