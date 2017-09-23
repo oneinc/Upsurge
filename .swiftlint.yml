@@ -5,3 +5,5 @@ disabled_rules:
   - identifier_name
   - large_tuple
   - line_length
+  - trailing_comma
+
