@@ -44,7 +44,7 @@ class ComplexTests: XCTestCase {
     }
 
     func testSumComplex() {
-        let values = ComplexArray((0..<n).map { _ in
+        let values = ComplexArray((0..<n).map { (_: Int) -> Complex<Double> in
             Complex(
                 real: Double(arc4random()) - Double(UInt32.max)/2,
                 imag: Double(arc4random()) - Double(UInt32.max)/2)
