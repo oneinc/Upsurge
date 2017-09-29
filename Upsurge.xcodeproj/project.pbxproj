@@ -10,6 +10,30 @@
 		37BBC8081E0AFDDB00EE9D1B /* Sequence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37BBC8071E0AFDDB00EE9D1B /* Sequence.swift */; };
 		37BBC8091E0AFDDB00EE9D1B /* Sequence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37BBC8071E0AFDDB00EE9D1B /* Sequence.swift */; };
 		37BBC80A1E0AFDDB00EE9D1B /* Sequence.swift in Sources */ = {isa = PBXBuildFile; fileRef = 37BBC8071E0AFDDB00EE9D1B /* Sequence.swift */; };
+		4F4D3F9A1F7EE1660071059C /* Codable-UInt8.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F4D3F991F7EE1660071059C /* Codable-UInt8.swift */; };
+		4F4D3F9B1F7EE1660071059C /* Codable-UInt8.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F4D3F991F7EE1660071059C /* Codable-UInt8.swift */; };
+		4F4D3F9C1F7EE1660071059C /* Codable-UInt8.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F4D3F991F7EE1660071059C /* Codable-UInt8.swift */; };
+		4F4D3FA41F7EE5840071059C /* Codable-Int16.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F4D3F9D1F7EE5830071059C /* Codable-Int16.swift */; };
+		4F4D3FA51F7EE5840071059C /* Codable-Int16.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F4D3F9D1F7EE5830071059C /* Codable-Int16.swift */; };
+		4F4D3FA61F7EE5840071059C /* Codable-Int16.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F4D3F9D1F7EE5830071059C /* Codable-Int16.swift */; };
+		4F4D3FA71F7EE5840071059C /* Codable-UInt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F4D3F9E1F7EE5830071059C /* Codable-UInt.swift */; };
+		4F4D3FA81F7EE5840071059C /* Codable-UInt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F4D3F9E1F7EE5830071059C /* Codable-UInt.swift */; };
+		4F4D3FA91F7EE5840071059C /* Codable-UInt.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F4D3F9E1F7EE5830071059C /* Codable-UInt.swift */; };
+		4F4D3FAA1F7EE5840071059C /* Codable-Int8.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F4D3F9F1F7EE5840071059C /* Codable-Int8.swift */; };
+		4F4D3FAB1F7EE5840071059C /* Codable-Int8.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F4D3F9F1F7EE5840071059C /* Codable-Int8.swift */; };
+		4F4D3FAC1F7EE5840071059C /* Codable-Int8.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F4D3F9F1F7EE5840071059C /* Codable-Int8.swift */; };
+		4F4D3FAD1F7EE5840071059C /* Codable-UInt16.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F4D3FA01F7EE5840071059C /* Codable-UInt16.swift */; };
+		4F4D3FAE1F7EE5840071059C /* Codable-UInt16.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F4D3FA01F7EE5840071059C /* Codable-UInt16.swift */; };
+		4F4D3FAF1F7EE5840071059C /* Codable-UInt16.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F4D3FA01F7EE5840071059C /* Codable-UInt16.swift */; };
+		4F4D3FB01F7EE5840071059C /* Codable-Int.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F4D3FA11F7EE5840071059C /* Codable-Int.swift */; };
+		4F4D3FB11F7EE5840071059C /* Codable-Int.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F4D3FA11F7EE5840071059C /* Codable-Int.swift */; };
+		4F4D3FB21F7EE5840071059C /* Codable-Int.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F4D3FA11F7EE5840071059C /* Codable-Int.swift */; };
+		4F4D3FB31F7EE5840071059C /* Codable-Double.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F4D3FA21F7EE5840071059C /* Codable-Double.swift */; };
+		4F4D3FB41F7EE5840071059C /* Codable-Double.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F4D3FA21F7EE5840071059C /* Codable-Double.swift */; };
+		4F4D3FB51F7EE5840071059C /* Codable-Double.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F4D3FA21F7EE5840071059C /* Codable-Double.swift */; };
+		4F4D3FB61F7EE5840071059C /* Codable-Float.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F4D3FA31F7EE5840071059C /* Codable-Float.swift */; };
+		4F4D3FB71F7EE5840071059C /* Codable-Float.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F4D3FA31F7EE5840071059C /* Codable-Float.swift */; };
+		4F4D3FB81F7EE5840071059C /* Codable-Float.swift in Sources */ = {isa = PBXBuildFile; fileRef = 4F4D3FA31F7EE5840071059C /* Codable-Float.swift */; };
 		614A101D1C6519610033D201 /* PointerUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 614A101C1C6519610033D201 /* PointerUtilities.swift */; };
 		614A101E1C6519610033D201 /* PointerUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 614A101C1C6519610033D201 /* PointerUtilities.swift */; };
 		614A101F1C6519610033D201 /* PointerUtilities.swift in Sources */ = {isa = PBXBuildFile; fileRef = 614A101C1C6519610033D201 /* PointerUtilities.swift */; };
@@ -170,6 +194,14 @@
 
 /* Begin PBXFileReference section */
 		37BBC8071E0AFDDB00EE9D1B /* Sequence.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Sequence.swift; sourceTree = "<group>"; };
+		4F4D3F991F7EE1660071059C /* Codable-UInt8.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Codable-UInt8.swift"; sourceTree = "<group>"; };
+		4F4D3F9D1F7EE5830071059C /* Codable-Int16.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Codable-Int16.swift"; sourceTree = "<group>"; };
+		4F4D3F9E1F7EE5830071059C /* Codable-UInt.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Codable-UInt.swift"; sourceTree = "<group>"; };
+		4F4D3F9F1F7EE5840071059C /* Codable-Int8.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Codable-Int8.swift"; sourceTree = "<group>"; };
+		4F4D3FA01F7EE5840071059C /* Codable-UInt16.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Codable-UInt16.swift"; sourceTree = "<group>"; };
+		4F4D3FA11F7EE5840071059C /* Codable-Int.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Codable-Int.swift"; sourceTree = "<group>"; };
+		4F4D3FA21F7EE5840071059C /* Codable-Double.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Codable-Double.swift"; sourceTree = "<group>"; };
+		4F4D3FA31F7EE5840071059C /* Codable-Float.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Codable-Float.swift"; sourceTree = "<group>"; };
 		614A101C1C6519610033D201 /* PointerUtilities.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = PointerUtilities.swift; sourceTree = "<group>"; };
 		614ACA701BD1CB7B00A1C13E /* Upsurge.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Upsurge.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		614ACA7A1BD1CB7B00A1C13E /* UpsurgeTests OSX.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = "UpsurgeTests OSX.xctest"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -272,6 +304,21 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		4F4D3F981F7EDE1F0071059C /* Codable */ = {
+			isa = PBXGroup;
+			children = (
+				4F4D3FA21F7EE5840071059C /* Codable-Double.swift */,
+				4F4D3FA31F7EE5840071059C /* Codable-Float.swift */,
+				4F4D3FA11F7EE5840071059C /* Codable-Int.swift */,
+				4F4D3F9F1F7EE5840071059C /* Codable-Int8.swift */,
+				4F4D3F9D1F7EE5830071059C /* Codable-Int16.swift */,
+				4F4D3F9E1F7EE5830071059C /* Codable-UInt.swift */,
+				4F4D3F991F7EE1660071059C /* Codable-UInt8.swift */,
+				4F4D3FA01F7EE5840071059C /* Codable-UInt16.swift */,
+			);
+			name = Codable;
+			sourceTree = "<group>";
+		};
 		614ACA661BD1CB7B00A1C13E = {
 			isa = PBXGroup;
 			children = (
@@ -298,6 +345,7 @@
 		614ACA8A1BD1CBB200A1C13E /* Source */ = {
 			isa = PBXGroup;
 			children = (
+				4F4D3F981F7EDE1F0071059C /* Codable */,
 				D0811F5A1E84BC7E00EFBCB7 /* Extensions */,
 				D0811F5E1E84BCEA00EFBCB7 /* Types */,
 				D0811F5F1E84BD0200EFBCB7 /* Operations */,
@@ -595,11 +643,11 @@
 					};
 					614ACAC91BD1CBF300A1C13E = {
 						CreatedOnToolsVersion = 7.0.1;
-						LastSwiftMigration = 0800;
+						LastSwiftMigration = 0900;
 					};
 					614ACAD21BD1CBF300A1C13E = {
 						CreatedOnToolsVersion = 7.0.1;
-						LastSwiftMigration = 0800;
+						LastSwiftMigration = 0900;
 						ProvisioningStyle = Automatic;
 					};
 					61D0466C1C48BA5B00DB7279 = {
@@ -731,11 +779,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4F4D3F9A1F7EE1660071059C /* Codable-UInt8.swift in Sources */,
 				8C3D09621C1A3536009144CA /* MatrixSlice.swift in Sources */,
 				616832CF1BFE6AED00C4DC6D /* Tensor.swift in Sources */,
 				616832CB1BFE6AED00C4DC6D /* MatrixArithmetic.swift in Sources */,
 				8C8684D21C1E422C007306DB /* Complex.swift in Sources */,
 				8C8684DF1C1E5DD5007306DB /* FFT.swift in Sources */,
+				4F4D3FB31F7EE5840071059C /* Codable-Double.swift in Sources */,
 				8C8684D61C1E4252007306DB /* ComplexArray.swift in Sources */,
 				616832C91BFE6AED00C4DC6D /* Matrix.swift in Sources */,
 				616832D31BFE6AED00C4DC6D /* DSP.swift in Sources */,
@@ -748,19 +798,25 @@
 				8C8684DD1C1E4388007306DB /* ComplexArraySlice.swift in Sources */,
 				616832E71BFE6AED00C4DC6D /* Trigonometric.swift in Sources */,
 				616832BD1BFE6AED00C4DC6D /* ValueArray.swift in Sources */,
+				4F4D3FB01F7EE5840071059C /* Codable-Int.swift in Sources */,
 				616832C31BFE6AED00C4DC6D /* Interval.swift in Sources */,
 				616832DF1BFE6AED00C4DC6D /* Arithmetic.swift in Sources */,
 				616832D11BFE6AED00C4DC6D /* TensorSlice.swift in Sources */,
 				61F5B7D41BFFF13A0017B4F2 /* LinearType.swift in Sources */,
 				616832CD1BFE6AED00C4DC6D /* Span.swift in Sources */,
+				4F4D3FA41F7EE5840071059C /* Codable-Int16.swift in Sources */,
 				8C3D09671C1B41C6009144CA /* 2DTensorSlice.swift in Sources */,
 				616832E51BFE6AED00C4DC6D /* Hyperbolic.swift in Sources */,
 				616832C51BFE6AED00C4DC6D /* Real.swift in Sources */,
 				61F5B7DD1C0103C70017B4F2 /* LinearOperators.swift in Sources */,
 				61F5B7D11BFFF0DD0017B4F2 /* QuadraticType.swift in Sources */,
+				4F4D3FA71F7EE5840071059C /* Codable-UInt.swift in Sources */,
 				616832C71BFE6AED00C4DC6D /* Value.swift in Sources */,
+				4F4D3FAA1F7EE5840071059C /* Codable-Int8.swift in Sources */,
 				8C8684DA1C1E4348007306DB /* ComplexArithmetic.swift in Sources */,
+				4F4D3FAD1F7EE5840071059C /* Codable-UInt16.swift in Sources */,
 				616832E31BFE6AED00C4DC6D /* Exponential.swift in Sources */,
+				4F4D3FB61F7EE5840071059C /* Codable-Float.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -788,11 +844,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4F4D3F9B1F7EE1660071059C /* Codable-UInt8.swift in Sources */,
 				8C3D09631C1A3536009144CA /* MatrixSlice.swift in Sources */,
 				616832D01BFE6AED00C4DC6D /* Tensor.swift in Sources */,
 				616832CC1BFE6AED00C4DC6D /* MatrixArithmetic.swift in Sources */,
 				8C8684D31C1E422D007306DB /* Complex.swift in Sources */,
 				8C8684E01C1E5DD6007306DB /* FFT.swift in Sources */,
+				4F4D3FB51F7EE5840071059C /* Codable-Double.swift in Sources */,
 				8C8684D71C1E4253007306DB /* ComplexArray.swift in Sources */,
 				616832CA1BFE6AED00C4DC6D /* Matrix.swift in Sources */,
 				616832D41BFE6AED00C4DC6D /* DSP.swift in Sources */,
@@ -805,19 +863,25 @@
 				8C8684DE1C1E4388007306DB /* ComplexArraySlice.swift in Sources */,
 				616832E81BFE6AED00C4DC6D /* Trigonometric.swift in Sources */,
 				616832BE1BFE6AED00C4DC6D /* ValueArray.swift in Sources */,
+				4F4D3FB21F7EE5840071059C /* Codable-Int.swift in Sources */,
 				616832C41BFE6AED00C4DC6D /* Interval.swift in Sources */,
 				616832E01BFE6AED00C4DC6D /* Arithmetic.swift in Sources */,
 				616832D21BFE6AED00C4DC6D /* TensorSlice.swift in Sources */,
 				61F5B7D51BFFF13A0017B4F2 /* LinearType.swift in Sources */,
 				616832CE1BFE6AED00C4DC6D /* Span.swift in Sources */,
+				4F4D3FA61F7EE5840071059C /* Codable-Int16.swift in Sources */,
 				8C3D09681C1B41C6009144CA /* 2DTensorSlice.swift in Sources */,
 				616832E61BFE6AED00C4DC6D /* Hyperbolic.swift in Sources */,
 				616832C61BFE6AED00C4DC6D /* Real.swift in Sources */,
 				61F5B7DE1C0103C70017B4F2 /* LinearOperators.swift in Sources */,
 				61F5B7D21BFFF0DD0017B4F2 /* QuadraticType.swift in Sources */,
+				4F4D3FA91F7EE5840071059C /* Codable-UInt.swift in Sources */,
 				616832C81BFE6AED00C4DC6D /* Value.swift in Sources */,
+				4F4D3FAC1F7EE5840071059C /* Codable-Int8.swift in Sources */,
 				8C8684DB1C1E4348007306DB /* ComplexArithmetic.swift in Sources */,
+				4F4D3FAF1F7EE5840071059C /* Codable-UInt16.swift in Sources */,
 				616832E41BFE6AED00C4DC6D /* Exponential.swift in Sources */,
+				4F4D3FB81F7EE5840071059C /* Codable-Float.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -845,11 +909,13 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				4F4D3F9C1F7EE1660071059C /* Codable-UInt8.swift in Sources */,
 				61D0469D1C48BB8600DB7279 /* Matrix.swift in Sources */,
 				61D0469F1C48BB8600DB7279 /* MatrixSlice.swift in Sources */,
 				61D0469B1C48BB8100DB7279 /* ValueArraySlice.swift in Sources */,
 				61D0469C1C48BB8600DB7279 /* QuadraticType.swift in Sources */,
 				61D046961C48BB7D00DB7279 /* Hyperbolic.swift in Sources */,
+				4F4D3FB41F7EE5840071059C /* Codable-Double.swift in Sources */,
 				61D046A51C48BB8E00DB7279 /* DSP.swift in Sources */,
 				61D046901C48BB7800DB7279 /* Interval.swift in Sources */,
 				61D046951C48BB7D00DB7279 /* Exponential.swift in Sources */,
@@ -862,19 +928,25 @@
 				61D046AA1C48BB9300DB7279 /* ComplexArraySlice.swift in Sources */,
 				61D046A31C48BB8A00DB7279 /* Tensor.swift in Sources */,
 				61D0469A1C48BB8100DB7279 /* ValueArray.swift in Sources */,
+				4F4D3FB11F7EE5840071059C /* Codable-Int.swift in Sources */,
 				61D046991C48BB8100DB7279 /* LinearOperators.swift in Sources */,
 				61D046971C48BB7D00DB7279 /* Trigonometric.swift in Sources */,
 				61D046A01C48BB8600DB7279 /* 2DTensorSlice.swift in Sources */,
 				61D046A71C48BB9300DB7279 /* Complex.swift in Sources */,
 				61D046A41C48BB8A00DB7279 /* TensorSlice.swift in Sources */,
+				4F4D3FA51F7EE5840071059C /* Codable-Int16.swift in Sources */,
 				61D0469E1C48BB8600DB7279 /* MatrixArithmetic.swift in Sources */,
 				61D046911C48BB7800DB7279 /* Real.swift in Sources */,
 				61D046A61C48BB8E00DB7279 /* FFT.swift in Sources */,
 				61D046921C48BB7800DB7279 /* Value.swift in Sources */,
 				61D046A91C48BB9300DB7279 /* ComplexArray.swift in Sources */,
+				4F4D3FA81F7EE5840071059C /* Codable-UInt.swift in Sources */,
 				61D046941C48BB7D00DB7279 /* Auxiliary.swift in Sources */,
+				4F4D3FAB1F7EE5840071059C /* Codable-Int8.swift in Sources */,
 				61D046A81C48BB9300DB7279 /* ComplexArithmetic.swift in Sources */,
+				4F4D3FAE1F7EE5840071059C /* Codable-UInt16.swift in Sources */,
 				61D046981C48BB8100DB7279 /* LinearType.swift in Sources */,
+				4F4D3FB71F7EE5840071059C /* Codable-Float.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -1039,6 +1111,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.venturemedia.Upsurge-OSX";
 				PRODUCT_NAME = Upsurge;
 				SKIP_INSTALL = YES;
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Debug;
 		};
@@ -1059,6 +1133,8 @@
 				PRODUCT_NAME = Upsurge;
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Release;
 		};
@@ -1070,6 +1146,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = "com.venturemedia.UpsurgeTests-OSX";
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.0;
 			};
 			name = Debug;
 		};
@@ -1082,6 +1159,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.venturemedia.UpsurgeTests-OSX";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 4.0;
 			};
 			name = Release;
 		};
@@ -1100,6 +1178,8 @@
 				PRODUCT_NAME = Upsurge;
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
+				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 			};
 			name = Debug;
@@ -1120,6 +1200,8 @@
 				SDKROOT = iphoneos;
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
+				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = "1,2";
 				VALIDATE_PRODUCT = YES;
 			};
@@ -1136,6 +1218,8 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.venturemedia.UpsurgeTests-iOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
+				SWIFT_VERSION = 4.0;
 			};
 			name = Debug;
 		};
@@ -1151,6 +1235,8 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = iphoneos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_SWIFT3_OBJC_INFERENCE = Default;
+				SWIFT_VERSION = 4.0;
 				VALIDATE_PRODUCT = YES;
 			};
 			name = Release;
@@ -1170,6 +1256,7 @@
 				PRODUCT_NAME = Upsurge;
 				SDKROOT = appletvos;
 				SKIP_INSTALL = YES;
+				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 3;
 				TVOS_DEPLOYMENT_TARGET = 9.0;
 			};
@@ -1191,6 +1278,7 @@
 				SDKROOT = appletvos;
 				SKIP_INSTALL = YES;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 4.0;
 				TARGETED_DEVICE_FAMILY = 3;
 				TVOS_DEPLOYMENT_TARGET = 9.0;
 				VALIDATE_PRODUCT = YES;
@@ -1205,6 +1293,7 @@
 				PRODUCT_BUNDLE_IDENTIFIER = "com.venturemedia.UpsurgeTests-tvOS";
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = appletvos;
+				SWIFT_VERSION = 4.0;
 				TVOS_DEPLOYMENT_TARGET = 9.0;
 			};
 			name = Debug;
@@ -1218,6 +1307,7 @@
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SDKROOT = appletvos;
 				SWIFT_OPTIMIZATION_LEVEL = "-Owholemodule";
+				SWIFT_VERSION = 4.0;
 				TVOS_DEPLOYMENT_TARGET = 9.0;
 				VALIDATE_PRODUCT = YES;
 			};

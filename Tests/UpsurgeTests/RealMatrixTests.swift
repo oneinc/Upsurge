@@ -38,6 +38,43 @@ class RealMatrixTests: XCTestCase {
         XCTAssertEqual(a, b)
     }
     
+    func testCodable() {
+        let rowZero = [0.2, 0.3, 0.4, 0.5]
+        let rowOne = [0.1, 0.5, 0.2, 0.6]
+        let rowTwo = [0.3, 0.6, 0.3, 0.1]
+        let rowThree = [0.1, 0.4, 0.0, 0.1]
+        
+        let a = Matrix<Double>([rowZero, rowOne, rowTwo, rowThree])
+        
+        let boxedA = Double.BoxedMatrix(matrix: a)
+        
+        let jsonEncoder = JSONEncoder()
+        if let data = try? jsonEncoder.encode(boxedA) {
+            let jsonDecoder = JSONDecoder()
+            if let boxedB = try? jsonDecoder.decode(Double.BoxedMatrix.self, from: data) {
+                XCTAssertEqual(a, boxedB.matrix)
+                XCTAssertEqual(boxedA, boxedB)
+            } else {
+                XCTAssert(false)
+            }
+        } else {
+            XCTAssert(false)
+        }
+        
+        let plistEncoder = PropertyListEncoder()
+        plistEncoder.outputFormat = .binary
+        if let data = try? plistEncoder.encode(boxedA) {
+            let plistDencoder = PropertyListDecoder()
+            if let boxedB = try? plistDencoder.decode(Double.BoxedMatrix.self, from: data) {
+                XCTAssertEqual(a, boxedB.matrix)
+                XCTAssertEqual(boxedA, boxedB)
+            } else {
+                XCTAssert(false)
+            }
+        } else {
+            XCTAssert(false)
+        }
+    }
     
     func testAdd() {
         var a = Matrix<Double>(rows: 2, columns: 2, elements: [1, 2, 3, 4] as ValueArray<Double>)

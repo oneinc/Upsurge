@@ -29,6 +29,44 @@ class RealArrayTests: XCTestCase {
         let array: ValueArray<Double> = [1.0, 2.0, 3.0]
         XCTAssertEqual(array.description, "[1.0, 2.0, 3.0]")
     }
+    
+    func testCodable() {
+        let rowZero = [0.2, 0.3, 0.4, 0.5]
+        let rowOne = [0.1, 0.5, 0.2, 0.6]
+        let rowTwo = [0.3, 0.6, 0.3, 0.1]
+        let rowThree = [0.1, 0.4, 0.0, 0.1]
+        
+        let a = ValueArray<Double>(rowZero + rowOne + rowTwo + rowThree)
+        
+        let boxedA = Double.BoxedValueArray(valueArray: a)
+        
+        let jsonEncoder = JSONEncoder()
+        if let data = try? jsonEncoder.encode(boxedA) {
+            let jsonDecoder = JSONDecoder()
+            if let boxedB = try? jsonDecoder.decode(Double.BoxedValueArray.self, from: data) {
+                XCTAssertEqual(a, boxedB.array)
+                XCTAssertEqual(boxedA, boxedB)
+            } else {
+                XCTAssert(false)
+            }
+        } else {
+            XCTAssert(false)
+        }
+        
+        let plistEncoder = PropertyListEncoder()
+        plistEncoder.outputFormat = .binary
+        if let data = try? plistEncoder.encode(boxedA) {
+            let plistDencoder = PropertyListDecoder()
+            if let boxedB = try? plistDencoder.decode(Double.BoxedValueArray.self, from: data) {
+                XCTAssertEqual(a, boxedB.array)
+                XCTAssertEqual(boxedA, boxedB)
+            } else {
+                XCTAssert(false)
+            }
+        } else {
+            XCTAssert(false)
+        }
+    }
 
     func testCopy() {
         let a: ValueArray = [1.0, 2.0, 3.0]
@@ -70,8 +108,8 @@ class RealArrayTests: XCTestCase {
         let n = ValueArray<Double>(capacity: 6)
         n.append(1.0)
         n.append(2.0)
-
-        XCTAssertEqual(n.capacity, 6)
+        XCTAssertGreaterThanOrEqual(n.capacity, 6)
+        // XCTAssertEqual(n.capacity, 6) because we page to memory size for GPU support
         XCTAssertEqual(n.count, 2)
         XCTAssertEqual(n[0], 1.0)
         XCTAssertEqual(n[1], 2.0)

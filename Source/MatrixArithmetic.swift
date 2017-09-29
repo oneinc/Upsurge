@@ -57,8 +57,11 @@ public func inv<M: QuadraticType>(_ x: M) -> Matrix<Double> where M.Element == D
     var nc = __CLPK_integer(x.columns)
 
     withPointer(&results) { pointer in
-        dgetrf_(&nc, &nc, pointer, &nc, &ipiv, &error)
-        dgetri_(&nc, pointer, &nc, &ipiv, &work, &lwork, &error)
+        var localNC = nc
+        var localNC2 = nc
+        dgetrf_(&nc, &localNC, pointer, &localNC2, &ipiv, &error)
+        dgetri_(&nc, pointer, &localNC, &ipiv, &work, &lwork, &error)
+        nc = localNC
     }
 
     assert(error == 0, "Matrix not invertible")
@@ -198,8 +201,11 @@ public func inv<M: QuadraticType>(_ x: M) -> Matrix<Float> where M.Element == Fl
     var nc = __CLPK_integer(x.columns)
 
     withPointer(&results) { pointer in
-        sgetrf_(&nc, &nc, pointer, &nc, &ipiv, &error)
-        sgetri_(&nc, pointer, &nc, &ipiv, &work, &lwork, &error)
+        var localNC = nc
+        var localNC2 = nc
+        sgetrf_(&nc, &localNC, pointer, &localNC2, &ipiv, &error)
+        sgetri_(&nc, pointer, &localNC, &ipiv, &work, &lwork, &error)
+        nc = localNC
     }
 
     assert(error == 0, "Matrix not invertible")

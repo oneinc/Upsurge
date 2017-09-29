@@ -44,12 +44,14 @@ class ComplexTests: XCTestCase {
     }
 
     func testSumComplex() {
-        let values = ComplexArray((0..<n).map { _ in
-            Complex(
+        var array: [Complex<Double>] = []
+        for _ in 0..<n {
+            array.append(Complex(
                 real: Double(arc4random()) - Double(UInt32.max)/2,
-                imag: Double(arc4random()) - Double(UInt32.max)/2)
-        })
-
+                imag: Double(arc4random()) - Double(UInt32.max)/2))
+        }
+        let values = ComplexArray<Double>(array)
+        
         var expected = Complex<Double>()
         for i in 0..<values.count {
             expected.real += values[i].real
