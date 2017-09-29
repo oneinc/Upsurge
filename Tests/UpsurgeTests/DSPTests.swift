@@ -40,4 +40,14 @@ class DSPTests: XCTestCase {
         let expected: ValueArray<Double> = [2.0, 1.0]
         XCTAssertEqual(actual, expected)
     }
+
+    func testFFT() {
+        let count = 64
+        let frequency = 4.0
+        let step = 2.0 * Double.pi / Double(count)
+        let x = ValueArray<Double>((0..<count).map({ step * Double($0) * frequency }))
+        let fft = FFTDouble(inputLength: x.count)
+        let complex = fft.forward(sin(x))
+        XCTAssertEqual(complex.count, x.count/2)
+    }
 }

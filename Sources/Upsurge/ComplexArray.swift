@@ -75,9 +75,9 @@ open class ComplexArray<T: Real>: MutableLinearType, ExpressibleByArrayLiteral, 
             return ComplexArrayRealSlice(base: self, startIndex: startIndex, endIndex: 2*endIndex - 1, step: 2)
         }
         set {
-            precondition(newValue.count == reals.count)
-            for i in 0..<newValue.count {
-                self.reals[i] = newValue[i]
+            precondition(newValue.count == elements.count)
+            for (i, value) in zip(0..<elements.count, newValue) {
+                elements[i].real = value
             }
         }
     }
@@ -87,9 +87,9 @@ open class ComplexArray<T: Real>: MutableLinearType, ExpressibleByArrayLiteral, 
             return ComplexArrayRealSlice(base: self, startIndex: startIndex + 1, endIndex: 2*endIndex, step: 2)
         }
         set {
-            precondition(newValue.count == imags.count)
-            for i in 0..<newValue.count {
-                self.imags[i] = newValue[i]
+            precondition(newValue.count == elements.count)
+            for (i, value) in zip(0..<elements.count, newValue) {
+                elements[i].imag = value
             }
         }
     }
