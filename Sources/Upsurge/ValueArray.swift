@@ -334,3 +334,5 @@ public func swap<T>(_ lhs: inout ValueArray<T>, rhs: inout ValueArray<T>) {
     swap(&lhs.capacity, &rhs.capacity)
     swap(&lhs.count, &rhs.count)
 }
+
+

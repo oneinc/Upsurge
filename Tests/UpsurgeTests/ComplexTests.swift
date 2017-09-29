@@ -47,9 +47,10 @@ class ComplexTests: XCTestCase {
         let values = ComplexArray((0..<n).map { (_: Int) -> Complex<Double> in
             Complex(
                 real: Double(arc4random()) - Double(UInt32.max)/2,
-                imag: Double(arc4random()) - Double(UInt32.max)/2)
-        })
-
+                imag: Double(arc4random()) - Double(UInt32.max)/2))
+        }
+        let values = ComplexArray<Double>(array)
+        
         var expected = Complex<Double>()
         for i in 0..<values.count {
             expected.real += values[i].real
