@@ -242,4 +242,17 @@ class RealMatrixTests: XCTestCase {
         XCTAssertEqual(B.count, 16)
         XCTAssertEqual(B.elements, [1.0, 2.0, 1.0, 2.0, 3.0, 4.0, 3.0, 4.0, 1.0, 2.0, 1.0, 2.0, 3.0, 4.0, 3.0, 4.0])
     }
+
+    func testDescription() {
+        let d = Matrix(rows: 5, columns: 5, repeatedValue: 2.0)
+        let test = d[0...4, 3...4]
+        XCTAssertEqual(test.description, """
+        ⎛\t2.0\t2.0\t⎞
+        ⎜\t2.0\t2.0\t⎥
+        ⎜\t2.0\t2.0\t⎥
+        ⎜\t2.0\t2.0\t⎥
+        ⎝\t2.0\t2.0\t⎠
+
+        """)
+    }
 }

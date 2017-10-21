@@ -145,10 +145,13 @@ open class MatrixSlice<Element: Value>: MutableQuadraticType, CustomStringConver
     open var description: String {
         var description = ""
 
-        for i in 0..<rows {
-            let contents = (0..<columns).map {"\(self[Interval(integerLiteral: span.startIndex[0] + i), Interval(integerLiteral: span.startIndex[1] + $0)])"}.joined(separator: "\t")
+        for row in 0..<rows {
+            let contents = (0..<columns).map { col in
+                let element = self[span.startIndex[0] + row, span.startIndex[1] + col]
+                return "\(element)"
+            }.joined(separator: "\t")
 
-            switch (i, rows) {
+            switch (row, rows) {
             case (0, 1):
                 description += "(\t\(contents)\t)"
             case (0, _):
