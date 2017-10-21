@@ -82,8 +82,6 @@ class RealArrayTests: XCTestCase {
         let slice = array[5...8]
 
         XCTAssertEqual(slice.count, 4)
-        XCTAssertEqual(slice.startIndex, 5)
-        XCTAssertEqual(slice.endIndex, 9)
         XCTAssert(slice == ValueArray<Double>([5.0, 6.0, 7.0, 8.0]))
     }
 

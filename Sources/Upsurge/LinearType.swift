@@ -34,11 +34,6 @@ public protocol LinearType: TensorType, CustomStringConvertible, CustomDebugStri
 }
 
 public extension LinearType {
-    /// The number of valid element in the memory block, taking into account the step size.
-    public var count: Int {
-        return (endIndex - startIndex + step - 1) / step
-    }
-
     public var dimensions: [Int] {
         return [count]
     }
@@ -76,7 +71,7 @@ extension Array: LinearType {
     }
 
     public var span: Span {
-        return Span(ranges: [startIndex ... endIndex - 1])
+        return Span(ranges: [startIndex ..< endIndex])
     }
 
     public init<C: LinearType>(other: C) where C.Iterator.Element == Element {

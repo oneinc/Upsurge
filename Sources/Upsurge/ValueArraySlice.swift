@@ -26,46 +26,62 @@ public struct ValueArraySlice<Element: Value>: MutableLinearType, CustomStringCo
     public typealias Base = ValueArray<Element>
 
     public let base: Base
-    public let startIndex: Index
-    public let endIndex: Index
+    public let baseStartIndex: Index
+    public let baseEndIndex: Index
     public let step: IndexDistance
 
+    public var startIndex: Index {
+        return 0
+    }
+
+    public var endIndex: Index {
+        return (baseEndIndex - baseStartIndex + step - 1) / step
+    }
+
     public var span: Span {
-        return Span(ranges: [startIndex ... endIndex - 1])
+        return Span(ranges: [startIndex ..< endIndex])
     }
 
     public func withUnsafeBufferPointer<R>(_ body: (UnsafeBufferPointer<Element>) throws -> R) rethrows -> R {
-        return try base.withUnsafeBufferPointer(body)
+        return try base.withUnsafeBufferPointer { p in
+            return try body(UnsafeBufferPointer<Element>(rebasing: p[baseStartIndex ..< baseEndIndex]))
+        }
     }
 
     public func withUnsafePointer<R>(_ body: (UnsafePointer<Element>) throws -> R) rethrows -> R {
-        return try base.withUnsafePointer(body)
+        return try base.withUnsafePointer { p in
+            return try body(p + baseStartIndex)
+        }
     }
 
     public func withUnsafeMutableBufferPointer<R>(_ body: (UnsafeMutableBufferPointer<Element>) throws -> R) rethrows -> R {
-        return try base.withUnsafeMutableBufferPointer(body)
+        return try base.withUnsafeMutableBufferPointer { p in
+            return try body(UnsafeMutableBufferPointer<Element>(rebasing: p[baseStartIndex ..< baseEndIndex]))
+        }
     }
 
     public func withUnsafeMutablePointer<R>(_ body: (UnsafeMutablePointer<Element>) throws -> R) rethrows -> R {
-        return try base.withUnsafeMutablePointer(body)
+        return try base.withUnsafeMutablePointer { p in
+            return try body(p + baseStartIndex)
+        }
     }
 
     public init(base: Base, startIndex: Index, endIndex: Index, step: IndexDistance) {
         assert(base.startIndex <= startIndex && endIndex <= base.endIndex)
         self.base = base
-        self.startIndex = startIndex
-        self.endIndex = endIndex
+        self.baseStartIndex = startIndex
+        self.baseEndIndex = endIndex
         self.step = step
     }
 
     public subscript(index: Index) -> Element {
         get {
-            assert(indexIsValid(index))
-            return base[index]
+            assert(index >= startIndex && index < endIndex)
+            return base[baseStartIndex + index * step]
         }
         set {
-            assert(indexIsValid(index))
-            base[index] = newValue
+            assert(index >= startIndex && index < endIndex)
+            base[baseStartIndex + index * step] = newValue
         }
     }
 
@@ -99,34 +115,6 @@ public struct ValueArraySlice<Element: Value>: MutableLinearType, CustomStringCo
         }
     }
 
-    public func index(after i: Index) -> Index {
-        return i + step
-    }
-
-    public func formIndex(after i: inout Int) {
-        i += step
-    }
-
-    public func index(before i: Int) -> Int {
-        return i - step
-    }
-
-    public func formIndex(before i: inout Int) {
-        i -= step
-    }
-
-    public func index(_ i: Int, offsetBy n: Int) -> Int {
-        return i + step * n
-    }
-
-    public func distance(from start: Int, to end: Int) -> Int {
-        return (end - start + step - 1) / step
-    }
-
-    public func makeIterator() -> ValueArraySliceIterator<Element> {
-        return ValueArraySliceIterator(base: self)
-    }
-
     public var description: String {
         return "[\(map({ $0.description }).joined(separator: ", "))]"
     }
@@ -137,25 +125,5 @@ public struct ValueArraySlice<Element: Value>: MutableLinearType, CustomStringCo
         return lhs.count == rhs.count && zip(lhs.indices, rhs.indices).all {
              lhs[$0] == rhs[$1]
         }
-    }
-}
-
-public struct ValueArraySliceIterator<Element: Value>: IteratorProtocol {
-    let base: ValueArraySlice<Element>
-    var index = 0
-
-    public init(base: ValueArraySlice<Element>) {
-        self.base = base
-        index = base.startIndex
-    }
-
-    public mutating func next() -> Element? {
-        if index >= base.endIndex {
-            return nil
-        }
-
-        let value = base[index]
-        index += base.step
-        return value
     }
 }

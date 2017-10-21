@@ -173,10 +173,10 @@ class RealMatrixTests: XCTestCase {
             [7, 8, 9]
         ])
         let col = m.column(1)
-
-        XCTAssertEqual(col.startIndex, 1)
-        XCTAssert(col.endIndex >= 8 && col.endIndex <= 9)
         XCTAssertEqual(col.count, 3)
+        XCTAssertEqual(col[0], 2)
+        XCTAssertEqual(col[1], 5)
+        XCTAssertEqual(col[2], 8)
     }
 
     func testRow() {
@@ -188,7 +188,9 @@ class RealMatrixTests: XCTestCase {
         let row = m.row(1)
 
         XCTAssertEqual(row.count, 3)
-        XCTAssertEqual(row.endIndex - row.startIndex, 3)
+        XCTAssertEqual(row[0], 4)
+        XCTAssertEqual(row[1], 5)
+        XCTAssertEqual(row[2], 6)
     }
 
     func testAddColumnRow() {
@@ -197,7 +199,9 @@ class RealMatrixTests: XCTestCase {
             [4, 5, 6],
             [7, 8, 9]
         ])
-        let r = m.column(1) + m.row(1)
+        let col = m.column(1)
+        let row = m.row(1)
+        let r = col + row
 
         XCTAssertEqual(r.count, 3)
         XCTAssertEqual(r[0], 6)

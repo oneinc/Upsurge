@@ -29,7 +29,7 @@ class RangedIndexTests: XCTestCase {
     override func setUp() {
         rangedDimension = 4...7
         indexedDimension = 1...1
-        rangedIndex = [0...1, 5...5, 3...4, 2...3, 0...0]
+        rangedIndex = [0..<2, CountableRange(5...5), 3..<5, 2..<4, 0..<1]
     }
 
     func testDimensionGenerator() {
@@ -44,7 +44,7 @@ class RangedIndexTests: XCTestCase {
     }
 
     func testIndexGeneratorOneElement() {
-        let span: Span = [0...0, 0...0]
+        let span: Span = [0..<1, 0..<1]
         let expected: [[Int]] = [[0, 0]]
 
         var result = [[Int]]()
