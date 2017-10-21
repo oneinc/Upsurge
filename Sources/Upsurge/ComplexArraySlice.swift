@@ -18,38 +18,53 @@
 // OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN
 // THE SOFTWARE.
 
-open class ComplexArraySlice<T: Real>: MutableLinearType {
+public class ComplexArraySlice<T: Real>: MutableLinearType {
     public typealias Index = Int
     public typealias Element = Complex<T>
     public typealias Slice = ComplexArraySlice
 
-    let base: ComplexArray<T>
+    public let base: ComplexArray<T>
+    public let baseStartIndex: Index
+    public let baseEndIndex: Index
+    public let step: Index
 
-    open let startIndex: Index
-    open let endIndex: Index
-    open let step: Index
+    public var startIndex: Index {
+        return 0
+    }
 
-    open var span: Span {
+    public var endIndex: Index {
+        return (baseEndIndex - baseStartIndex + step - 1) / step
+    }
+
+    public var span: Span {
         return Span(ranges: [startIndex ..< endIndex])
     }
 
-    open func withUnsafeBufferPointer<R>(_ body: (UnsafeBufferPointer<Element>) throws -> R) rethrows -> R {
-        return try base.withUnsafeBufferPointer(body)
+    public func withUnsafeBufferPointer<R>(_ body: (UnsafeBufferPointer<Element>) throws -> R) rethrows -> R {
+        return try base.withUnsafeBufferPointer { p in
+            return try body(UnsafeBufferPointer<Element>(rebasing: p[baseStartIndex ..< baseEndIndex]))
+        }
     }
 
-    open func withUnsafePointer<R>(_ body: (UnsafePointer<Element>) throws -> R) rethrows -> R {
-        return try base.withUnsafePointer(body)
+    public func withUnsafePointer<R>(_ body: (UnsafePointer<Element>) throws -> R) rethrows -> R {
+        return try base.withUnsafePointer { p in
+            return try body(p + baseStartIndex)
+        }
     }
 
-    open func withUnsafeMutableBufferPointer<R>(_ body: (UnsafeMutableBufferPointer<Element>) throws -> R) rethrows -> R {
-        return try base.withUnsafeMutableBufferPointer(body)
+    public func withUnsafeMutableBufferPointer<R>(_ body: (UnsafeMutableBufferPointer<Element>) throws -> R) rethrows -> R {
+        return try base.withUnsafeMutableBufferPointer { p in
+            return try body(UnsafeMutableBufferPointer<Element>(rebasing: p[baseStartIndex ..< baseEndIndex]))
+        }
     }
 
-    open func withUnsafeMutablePointer<R>(_ body: (UnsafeMutablePointer<Element>) throws -> R) rethrows -> R {
-        return try base.withUnsafeMutablePointer(body)
+    public func withUnsafeMutablePointer<R>(_ body: (UnsafeMutablePointer<Element>) throws -> R) rethrows -> R {
+        return try base.withUnsafeMutablePointer { p in
+            return try body(p + baseStartIndex)
+        }
     }
 
-    open var reals: ComplexArrayRealSlice<T> {
+    public var reals: ComplexArrayRealSlice<T> {
         get {
             return ComplexArrayRealSlice(base: base, startIndex: startIndex, endIndex: 2*endIndex - 1, step: 2)
         }
@@ -61,7 +76,7 @@ open class ComplexArraySlice<T: Real>: MutableLinearType {
         }
     }
 
-    open var imags: ComplexArrayRealSlice<T> {
+    public var imags: ComplexArrayRealSlice<T> {
         get {
             return ComplexArrayRealSlice(base: base, startIndex: startIndex + 1, endIndex: 2*endIndex, step: 2)
         }
@@ -76,23 +91,29 @@ open class ComplexArraySlice<T: Real>: MutableLinearType {
     public required init(base: ComplexArray<T>, startIndex: Index, endIndex: Index, step: Int) {
         assert(base.startIndex <= startIndex && endIndex <= base.endIndex)
         self.base = base
-        self.startIndex = startIndex
-        self.endIndex = endIndex
+        self.baseStartIndex = startIndex
+        self.baseEndIndex = endIndex
         self.step = step
     }
 
-    open subscript(index: Index) -> Element {
-        get {
-            precondition(0 <= index && index < count)
-            return base[index]
-        }
-        set {
-            precondition(0 <= index && index < count)
-            base[index] = newValue
+    public func assign<C: LinearType>(_ elements: C) where C.Element == Element {
+        for (i, value) in zip(stride(from: baseStartIndex, to: baseEndIndex, by: step), elements) {
+            base[i] = value
         }
     }
 
-    open subscript(indices: [Int]) -> Element {
+    public subscript(index: Index) -> Element {
+        get {
+            precondition(0 <= index && index < count)
+            return base[baseStartIndex + index * step]
+        }
+        set {
+            precondition(0 <= index && index < count)
+            base[baseStartIndex + index * step] = newValue
+        }
+    }
+
+    public subscript(indices: [Int]) -> Element {
         get {
             assert(indices.count == 1)
             return self[indices[0]]
@@ -103,18 +124,19 @@ open class ComplexArraySlice<T: Real>: MutableLinearType {
         }
     }
 
-    open subscript(intervals: [IntervalType]) -> Slice {
+    public subscript(intervals: [IntervalType]) -> Slice {
         get {
+            assert(span.contains(intervals))
             assert(intervals.count == 1)
             let start = intervals[0].start ?? startIndex
             let end = intervals[0].end ?? endIndex
             return Slice(base: base, startIndex: start, endIndex: end, step: step)
         }
         set {
+            assert(span.contains(intervals))
             assert(intervals.count == 1)
             let start = intervals[0].start ?? startIndex
             let end = intervals[0].end ?? endIndex
-            assert(startIndex <= start && end <= endIndex)
             for i in start..<end {
                 self[i] = newValue[newValue.startIndex + i - start]
             }

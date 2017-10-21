@@ -64,5 +64,4 @@ class ComplexTests: XCTestCase {
         XCTAssertEqual(actual.real, expected.real, accuracy: 0.0001)
         XCTAssertEqual(actual.imag, expected.imag, accuracy: 0.0001)
     }
-
 }

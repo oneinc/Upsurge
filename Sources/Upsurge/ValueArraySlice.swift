@@ -87,14 +87,14 @@ public struct ValueArraySlice<Element: Value>: MutableLinearType, CustomStringCo
 
     public subscript(intervals: [IntervalType]) -> Slice {
         get {
-            assert(self.span.contains(intervals))
+            assert(span.contains(intervals))
             assert(intervals.count == 1)
             let start = intervals[0].start ?? startIndex
             let end = intervals[0].end ?? endIndex
             return Slice(base: base, startIndex: start, endIndex: end, step: step)
         }
         set {
-            assert(self.span.contains(intervals))
+            assert(span.contains(intervals))
             assert(intervals.count == 1)
             let start = intervals[0].start ?? startIndex
             let end = intervals[0].end ?? endIndex
