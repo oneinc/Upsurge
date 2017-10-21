@@ -123,6 +123,12 @@ open class ComplexArray<T: Real>: MutableLinearType, ExpressibleByArrayLiteral, 
         elements = ValueArray(count: count, repeatedValue: repeatedValue)
     }
 
+    public func assign<C: LinearType>(_ new: C) where C.Element == Element {
+        for (i, value) in zip(elements.indices, new) {
+            elements[i] = value
+        }
+    }
+
     open subscript(index: Index) -> Element {
         get {
             precondition(0 <= index && index < capacity)

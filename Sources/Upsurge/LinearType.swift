@@ -61,6 +61,8 @@ public extension LinearType {
 
 public protocol MutableLinearType: LinearType, MutableTensorType {
     subscript(position: Int) -> Element { get set }
+
+    mutating func assign<C: LinearType>(_ elements: C) where C.Element == Element
 }
 
 extension Array: LinearType {

@@ -77,6 +77,14 @@ public struct ComplexArrayRealSlice<T: Real>: MutableLinearType {
         self.step = step
     }
 
+    public func assign<C: LinearType>(_ elements: C) where C.Element == Element {
+        withUnsafeMutablePointer { pointer in
+            for (i, value) in zip(stride(from: baseStartIndex, to: baseEndIndex, by: step), elements) {
+                pointer[i] = value
+            }
+        }
+    }
+
     public subscript(index: Int) -> Element {
         get {
             let baseIndex = startIndex + index

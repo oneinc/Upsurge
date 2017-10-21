@@ -123,6 +123,12 @@ open class ValueArray<Element: Value>: MutableLinearType, ExpressibleByArrayLite
         mutablePointer.deallocate(capacity: capacity)
     }
 
+    public func assign<C: LinearType>(_ elements: C) where C.Element == Element {
+        for (i, value) in zip(indices, elements) {
+            mutablePointer[i] = value
+        }
+    }
+
     open subscript(index: Index) -> Element {
         get {
             assert(indexIsValid(index))

@@ -74,6 +74,12 @@ public struct ValueArraySlice<Element: Value>: MutableLinearType, CustomStringCo
         self.step = step
     }
 
+    public func assign<C: LinearType>(_ elements: C) where C.Element == Element {
+        for (i, value) in zip(stride(from: baseStartIndex, to: baseEndIndex, by: step), elements) {
+            base[i] = value
+        }
+    }
+
     public subscript(index: Index) -> Element {
         get {
             assert(index >= startIndex && index < endIndex)

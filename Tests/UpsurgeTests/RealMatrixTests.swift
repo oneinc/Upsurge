@@ -255,4 +255,13 @@ class RealMatrixTests: XCTestCase {
 
         """)
     }
+
+    func testSliceAssignment() {
+        let d = Matrix<Double>(rows: 4, columns: 4, repeatedValue: 2.0)
+        d.column(3).assign([1.0, 1.0, 1.0, 1.0, 1.0])
+        XCTAssertEqual(d[0, 3], 1.0)
+        XCTAssertEqual(d[1, 3], 1.0)
+        XCTAssertEqual(d[2, 3], 1.0)
+        XCTAssertEqual(d[3, 3], 1.0)
+    }
 }
