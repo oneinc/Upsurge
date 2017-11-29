@@ -210,7 +210,7 @@ open class ValueArray<Element: Value>: MutableLinearType, ExpressibleByArrayLite
             return pointer[index]
         }
         set {
-            assert(indexIsValid(index))
+            guard indexIsValid(index) else { return }
             mutablePointer[index] = newValue
         }
     }
