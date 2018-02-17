@@ -29,7 +29,7 @@ open class FFTDouble {
 
     public init(inputLength: Int) {
         assert(inputLength.nonzeroBitCount == 1, "input length must be a power of 2")
-        let maxLengthLog2 = vDSP_Length(ceil(log2(Double(inputLength))))
+        let maxLengthLog2 = vDSP_Length(log2(Double(inputLength))) + 1
         maxLength = vDSP_Length(exp2(Double(maxLengthLog2)))
         setup = vDSP_create_fftsetupD(maxLengthLog2, FFTRadix(kFFTRadix2))!
 
@@ -54,7 +54,7 @@ open class FFTDouble {
     open func forward<M: LinearType>(_ input: M, results: inout ComplexArray<Double>) where M.Element == Double {
         let lengthLog2 = vDSP_Length(log2(Double(input.count)))
         let length = vDSP_Length(exp2(Double(lengthLog2)))
-        precondition(length <= maxLength, "Input should have at most \(maxLength) elements")
+        precondition(length <= maxLength/2, "Input should have at most \(maxLength/2) elements")
 
         real.assignFrom(input)
         for i in 0..<input.count {
@@ -80,7 +80,7 @@ open class FFTDouble {
     open func forwardMags<M: LinearType>(_ input: M) -> ValueArray<Double> where M.Element == Double {
         let lengthLog2 = vDSP_Length(log2(Double(input.count)))
         let length = vDSP_Length(exp2(Double(lengthLog2)))
-        var results = ValueArray<Double>(count: Int(length) / 2)
+        var results = ValueArray<Double>(count: Int(length))
         forwardMags(input, results: &results)
         return results
     }
@@ -89,7 +89,7 @@ open class FFTDouble {
     open func forwardMags<M: LinearType>(_ input: M, results: inout ValueArray<Double>) where M.Element == Double {
         let lengthLog2 = vDSP_Length(log2(Double(input.count)))
         let length = vDSP_Length(exp2(Double(lengthLog2)))
-        precondition(length <= maxLength, "Input should have at most \(maxLength) elements")
+        precondition(length <= maxLength/2, "Input should have at most \(maxLength/2) elements")
 
         real.assignFrom(input)
         for i in 0..<input.count {
@@ -117,7 +117,7 @@ open class FFTFloat {
 
     public init(inputLength: Int) {
         assert(inputLength.nonzeroBitCount == 1, "input length must be a power of 2")
-        let maxLengthLog2 = vDSP_Length(ceil(log2(Float(inputLength))))
+        let maxLengthLog2 = vDSP_Length(log2(Float(inputLength))) + 1
         maxLength = vDSP_Length(exp2(Float(maxLengthLog2)))
         setup = vDSP_create_fftsetupD(maxLengthLog2, FFTRadix(kFFTRadix2))!
 
@@ -133,7 +133,7 @@ open class FFTFloat {
     open func forward<M: LinearType>(_ input: M) -> ComplexArray<Float> where M.Element == Float {
         let lengthLog2 = vDSP_Length(log2(Float(input.count)))
         let length = vDSP_Length(exp2(Float(lengthLog2)))
-        precondition(length <= maxLength, "Input should have at most \(maxLength) elements")
+        precondition(length <= maxLength/2, "Input should have at most \(maxLength/2) elements")
 
         real.assignFrom(input)
         for i in 0..<input.count {
@@ -158,7 +158,7 @@ open class FFTFloat {
     open func forwardMags<M: LinearType>(_ input: M) -> ValueArray<Float> where M.Element == Float {
         let lengthLog2 = vDSP_Length(log2(Float(input.count)))
         let length = vDSP_Length(exp2(Float(lengthLog2)))
-        precondition(length <= maxLength, "Input should have at most \(maxLength) elements")
+        precondition(length <= maxLength/2, "Input should have at most \(maxLength/2) elements")
 
         real.assignFrom(input)
         for i in 0..<input.count {

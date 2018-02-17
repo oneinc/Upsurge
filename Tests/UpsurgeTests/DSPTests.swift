@@ -50,4 +50,18 @@ class DSPTests: XCTestCase {
         let complex = fft.forward(sin(x))
         XCTAssertEqual(complex.count, x.count/2)
     }
+
+    func testMultipleFFTs() {
+        let size = 256
+        let fft_calculator = FFTFloat(inputLength: size)
+        let fft_d = FFTDouble(inputLength: size)
+
+        let x2 = ValueArray<Double>((0 ..< size).map({ sin(0.01 * Double($0)) }))
+        let x3 = ValueArray<Float>((0 ..< size).map({ sin(0.01 * Float($0)) }))
+
+        for _ in 0..<10 {
+            _ = fft_d.forwardMags(x2)
+            _ = fft_calculator.forwardMags(x3)
+        }
+    }
 }
