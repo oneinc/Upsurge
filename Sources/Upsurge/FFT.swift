@@ -64,10 +64,11 @@ open class FFTDouble {
         var splitComplex = DSPDoubleSplitComplex(realp: real.mutablePointer, imagp: imag.mutablePointer)
         vDSP_fft_zipD(setup, &splitComplex, 1, lengthLog2, FFTDirection(FFT_FORWARD))
 
-        precondition(results.capacity >= Int(length) / 2)
+        let capacity = results.capacity
+        precondition(capacity >= Int(length) / 2)
         results.count = Int(length) / 2
         withPointer(&results) { pointer in
-            pointer.withMemoryRebound(to: DSPDoubleComplex.self, capacity: results.capacity) { resultsPointer in
+            pointer.withMemoryRebound(to: DSPDoubleComplex.self, capacity: capacity) { resultsPointer in
                 vDSP_ztocD(&splitComplex, 1, resultsPointer, 1, length/2)
             }
         }
@@ -145,7 +146,7 @@ open class FFTFloat {
 
         var result = ComplexArray<Float>(count: Int(length)/2)
         withPointer(&result) { pointer in
-            pointer.withMemoryRebound(to: DSPComplex.self, capacity: result.count) { pointer in
+            pointer.withMemoryRebound(to: DSPComplex.self, capacity: Int(length)/2) { pointer in
                 vDSP_ztoc(&splitComplex, 1, pointer, 1, length/2)
             }
         }
