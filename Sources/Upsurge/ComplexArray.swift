@@ -19,6 +19,11 @@
 // THE SOFTWARE.
 
 open class ComplexArray<T: Real>: MutableLinearType, ExpressibleByArrayLiteral, RangeReplaceableCollection {
+    
+    public required init<S>(_ elements: S) where S : Sequence, ComplexArray.Element == S.Element {
+        self.elements = ValueArray(elements.map{$0})
+    }
+    
     public typealias Index = Int
     public typealias Element = Complex<T>
     public typealias Slice = ComplexArraySlice<T>
