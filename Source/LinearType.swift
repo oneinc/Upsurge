@@ -71,7 +71,7 @@ public protocol MutableLinearType: LinearType, MutableTensorType {
 extension Array: LinearType {
     public typealias Slice = ArraySlice<Element>
 
-    public var step: IndexDistance {
+    public var step: Int {
         return 1
     }
 
