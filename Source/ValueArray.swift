@@ -200,7 +200,7 @@ open class ValueArray<Element: Value>: MutableLinearType, ExpressibleByArrayLite
 
     deinit {
         if !unownedPointer {
-            mutablePointer.deallocate(capacity: capacity)
+            mutablePointer.deallocate()
         }
     }
 
