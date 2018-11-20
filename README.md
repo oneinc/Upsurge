@@ -1,16 +1,14 @@
 # Upsurge
 
-Upsurge is a math utilities library. It provides support for linear operations on vectors and matrices, and slicing of higher-dimensional tensors. It relies on [Accelerate](https://developer.apple.com/library/mac/documentation/Accelerate/Reference/AccelerateFWRef/index.html#//apple_ref/doc/uid/TP40009465), which is a framework that provides high-performance functions for matrix math, digital signal processing, and image manipulation by harnessing [SIMD](http://en.wikipedia.org/wiki/SIMD) instructions available in modern CPUs.
+Upsurge implements multi-dimensional data structures and operations. It brings numpy-like operations to Swift.
 
-Upsurge is a fork of [Surge](https://github.com/mattt/Surge) which was abandoned for a while. Upsurge supports tensors and has better support for matrices and arrays. It provides a custom `ValueArray` class as an alternative to Swift's built-in `Array`. It being a `class` instead of a `struct` means that you can manage when and if it gets copied, making memory management more explicit. This also allows defining the `+=` operator to mean addition instead of concatenation.
-
+Upsurge no longer supports DSP and other linear operations, please use [Surge](https://github.com/mattt/Surge) for that. Surge and Upsurge play nice together. 
 
 ## Features
 
 - [x] Tensor and tensor slicing: `tensor.asMatrix(1, 1, 0...4, 0...4)`
 - [x] Matrix and matrix operations: `let result = A * B′`
 - [x] ValueArrays with explicit copying and numeric operators: `let result = A • B`
-- [x] Accelerate functions: `let conv = convolution(signal: signal, kernel: kernel)`
 
 
 ## Installation
