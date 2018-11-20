@@ -30,7 +30,7 @@ open class ValueArray<Element: Value>: MutableLinearType, ExpressibleByArrayLite
       self.init(count: 0)
     }
 
-    internal(set) var mutablePointer: UnsafeMutablePointer<Element>
+    var mutablePointer: UnsafeMutablePointer<Element>
     open internal(set) var capacity: IndexDistance
     open internal(set) var count: IndexDistance
 
